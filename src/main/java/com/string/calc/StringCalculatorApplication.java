@@ -8,7 +8,7 @@ public class StringCalculatorApplication {
 
 	// Object of scanner class to scan Inputs
 	private final static Scanner scanner = new Scanner(System.in);
-
+	// This Application can be tested using provided test cases 
 	public static void main(String[] args) {
 		String playAgain;
 		do {
