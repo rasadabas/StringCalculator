@@ -7,9 +7,9 @@ import com.string.calc.constants.CalculatorConstants;
 import com.string.calc.util.CalculatorUtil;
 
 public class StringCalculatorService {
-
+	// A utility class to perform util functions 
 	CalculatorUtil calculatorUtil = new CalculatorUtil();
-	
+	// Main calculator Method
 	public int calculator(String inputString) {
 
 		Matcher match = Pattern.compile(CalculatorConstants.USER_DEFINED_DELIMITERS).matcher(inputString);
@@ -17,7 +17,7 @@ public class StringCalculatorService {
 		String inputStringNumbers = getNumbersFromInputString(inputString, match.reset());
 		return getSumOfNumbers(getNumbersToSum(inputStringNumbers, delimiters));
 	}
-
+	// Method to get Delimiters from the Input String
 	private String getDelimitersFromInputString(Matcher match) {
 
 		if (match.find()) {
@@ -27,7 +27,7 @@ public class StringCalculatorService {
 			return CalculatorConstants.DEFAULT_DELIMITERS;
 		}
 	}
-
+	// Method to get Numbers to be added from the Input String 
 	private String getNumbersFromInputString(String inputString, Matcher match) {
 		if (match.find()) {
 			return match.group(CalculatorConstants.NUMBER_STRING_GROUP);
@@ -35,7 +35,7 @@ public class StringCalculatorService {
 			return inputString;
 		}
 	}
-
+	// Method returns String array of the numbers needs to be added
 	private String[] getNumbersToSum(String inputStringNumbers, String delimiters) {
 
 		if (inputStringNumbers.isEmpty()) {
@@ -43,7 +43,7 @@ public class StringCalculatorService {
 		} else
 			return inputStringNumbers.split(delimiters);
 	}
-
+	//Method to get the actual sum of the numbers 
 	private int getSumOfNumbers(String[] numbers) {
 		int sum = 0;
 		StringBuffer nagativeNumbers = new StringBuffer();
@@ -53,7 +53,7 @@ public class StringCalculatorService {
 		calculatorUtil.nagativeNumbersCase(nagativeNumbers);
 		return sum;
 	}
-
+	//Method to find User defined or customized Inputs 
 	private String userDefinedDilimiter(Matcher match) {
 		if (match.group(CalculatorConstants.SINGLE_CHARACTER_DELIMITER_STRING_GROUP) != null) {
 			return getCustomizedSingleDelimiter(match);
